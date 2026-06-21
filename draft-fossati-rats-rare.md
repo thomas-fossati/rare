@@ -103,4 +103,17 @@ TODO IANA
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge
+The APIs described in this document were designed and prototyped as part of the Veraison project over the past few years.
+The authors would like to thank the Veraison community, and in particular
+Dhanus M Lal,
+Ding Ma,
+Ian Chin Wang,
+Ian Oliver,
+Jag Raman,
+Paul Howard,
+Sergei Trofimov,
+Shefali Kamal,
+Simon Frost
+and
+Yogesh Deshpande,
+for their invaluable contributions.
