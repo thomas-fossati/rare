@@ -52,6 +52,42 @@ TODO Introduction
 {::boilerplate bcp14-tagged}
 
 
+# Appraisal
+
+## Discovery
+
+## Stateless Challenge-Response
+
+## Stateful Challenge-Response
+
+### Synchronous Completion
+
+### Asynchronous Completion
+
+# Endorsements and Reference Values Management
+
+## Discovery
+
+## RIM Provisioning
+
+## RIM Retrieval, Activation and Deactivation
+
+### The Query Object
+
+### Activating RIMs
+
+### Deactivating RIMs
+
+### Retrieving RIMs
+
+# Evidence Collection
+
+## Discovery
+
+## Evidence Format for Composite Evidence
+
+## Challenge-Response
+
 # Security Considerations
 
 TODO Security
