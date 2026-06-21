@@ -95,6 +95,15 @@ Table of Contents
 
    TODO Introduction
 
+   Section 3 describes APIs for the appraisal of Evidence.  Section 4
+   describes APIs for Endorsements and Reference Values management.
+   Section 5 describes APIs for requesting Evidence from a (composite)
+   Attester, together with a data format for aggregating composite
+   Evidence based on Collection CMWs [I-D.ietf-rats-msg-wrap].  The
+   Evidence appraisal and Evidence request APIs are both based on the
+   challenge-response interaction model described in Section 7.1 of
+   [I-D.ietf-rats-reference-interaction-models].
+
 2.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -148,6 +157,21 @@ Table of Contents
    TODO IANA
 
 8.  Normative References
+
+   [I-D.ietf-rats-msg-wrap]
+              Birkholz, H., Smith, N., Fossati, T., Tschofenig, H., and
+              D. Glaze, "RATS Conceptual Messages Wrapper (CMW)", Work
+              in Progress, Internet-Draft, draft-ietf-rats-msg-wrap-23,
+              11 December 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-msg-wrap-23>.
+
+   [I-D.ietf-rats-reference-interaction-models]
+              Birkholz, H., Eckel, M., Pan, W., and E. Voit, "Reference
+              Interaction Models for Remote Attestation Procedures",
+              Work in Progress, Internet-Draft, draft-ietf-rats-
+              reference-interaction-models-17, 2 April 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-rats-
+              reference-interaction-models-17>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
