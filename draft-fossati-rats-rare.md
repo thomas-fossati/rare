@@ -12,9 +12,8 @@ v: 3
 area: "Security"
 workgroup: "Remote ATtestation ProcedureS"
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - RATS
+ - ReST
 venue:
   group: "Remote ATtestation ProcedureS"
   type: "Working Group"
@@ -30,10 +29,11 @@ author:
     email: thomas.fossati@linaro.org
 
 normative:
+  I-D.ietf-rats-reference-interaction-models: rats-reim
+  I-D.ietf-rats-msg-wrap: rats-cmw
 
 informative:
 
-...
 
 --- abstract
 
@@ -46,13 +46,17 @@ TODO Abstract
 
 TODO Introduction
 
+{{sec-verifier}} describes APIs for the appraisal of Evidence.
+{{sec-supply-chain}} describes APIs for Endorsements and Reference Values management.
+{{sec-attester}} describes APIs for requesting Evidence from a (composite) Attester, together with a data format for aggregating composite Evidence based on Collection CMWs {{-rats-cmw}}.
+The Evidence appraisal and Evidence request APIs are both based on the challenge-response interaction model described in {{Section 7.1 of -rats-reim}}.
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
 
-# Appraisal
+# Appraisal {#sec-verifier}
 
 ## Discovery
 
@@ -64,7 +68,7 @@ TODO Introduction
 
 ### Asynchronous Completion
 
-# Endorsements and Reference Values Management
+# Endorsements and Reference Values Management {#sec-supply-chain}
 
 ## Discovery
 
@@ -80,7 +84,7 @@ TODO Introduction
 
 ### Retrieving RIMs
 
-# Evidence Collection
+# Evidence Collection {#sec-attester}
 
 ## Discovery
 
