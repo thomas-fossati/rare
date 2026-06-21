@@ -37,8 +37,9 @@ informative:
 
 --- abstract
 
-TODO Abstract
-
+This document describes the REST APIs through which RATS roles can interact.
+These APIs facilitate the discovery of a role's capabilities, as well as the negotiation and exchange of RATS Conceptual Messages in several key scenarios, such as Evidence gathering, Evidence appraisal, Endorsements and Reference Value management.
+The aim of this document is not to cover all possible RATS interaction patterns, but rather a useful subset.
 
 --- middle
 
