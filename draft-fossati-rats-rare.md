@@ -27,6 +27,14 @@ author:
     fullname: Thomas Fossati
     organization: Linaro
     email: thomas.fossati@linaro.org
+ -
+    fullname: Henk Birkholz
+    organization: Fraunhofer SIT
+    email: henk.birkholz@ietf.contact
+ -
+    fullname: Nathanael Ritz
+    organization: Independent
+    email: ietf@nritz.com
 
 normative:
   I-D.ietf-rats-reference-interaction-models: rats-reim
