@@ -4,8 +4,11 @@
 
 Remote ATtestation ProcedureS                                 T. Fossati
 Internet-Draft                                                    Linaro
-Intended status: Standards Track                            22 June 2026
-Expires: 24 December 2026
+Intended status: Standards Track                             H. Birkholz
+Expires: 24 December 2026                                 Fraunhofer SIT
+                                                                 N. Ritz
+                                                             Independent
+                                                            22 June 2026
 
 
                              RATS ReST APIs
@@ -96,7 +99,7 @@ Table of Contents
    8.  Normative References
    Appendix A.  OpenAPI Schema
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -202,8 +205,18 @@ Acknowledgments
    Sergei Trofimov, Shefali Kamal, Simon Frost and Yogesh Deshpande, for
    their invaluable contributions.
 
-Author's Address
+Authors' Addresses
 
    Thomas Fossati
    Linaro
    Email: thomas.fossati@linaro.org
+
+
+   Henk Birkholz
+   Fraunhofer SIT
+   Email: henk.birkholz@ietf.contact
+
+
+   Nathanael Ritz
+   Independent
+   Email: ietf@nritz.com
