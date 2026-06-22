@@ -14,7 +14,7 @@ else
 endif
 endif
 
-lint:: http-lint
+lint:: http-lint openapi-lint
 
 rfc-http-validate ?= rfc-http-validate
 .SECONDARY: $(drafts_xml)
@@ -24,3 +24,8 @@ http-lint: $(addsuffix .http-lint.txt,$(addprefix .,$(drafts)))
 .%.http-lint.txt: %.xml $(DEPS_FILES)
 	$(trace) $< -s http-lint $(rfc-http-validate) -q $<
 	@touch $@
+
+openapi-spec-validator ?= openapi-spec-validator
+.SECONDARY: $(drafts_xml)
+.PHONY: openapi-lint
+openapi-lint: ; $(MAKE) -C openapi check

@@ -105,6 +105,11 @@ TODO IANA
 
 --- back
 
+# OpenAPI Schema {#openapi-schema}
+
+TODO openapi
+
+
 # Acknowledgments
 {:numbered="false"}
 
