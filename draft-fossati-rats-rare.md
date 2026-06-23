@@ -35,6 +35,10 @@ author:
     fullname: Nathanael Ritz
     organization: Independent
     email: ietf@nritz.com
+ -
+    fullname: Paul Howard
+    organization: Arm
+    email: paul.howard@arm.com
 
 normative:
   I-D.ietf-rats-reference-interaction-models: rats-reim
@@ -128,7 +132,6 @@ Ding Ma,
 Ian Chin Wang,
 Ian Oliver,
 Jag Raman,
-Paul Howard,
 Sergei Trofimov,
 Shefali Kamal,
 Simon Frost
