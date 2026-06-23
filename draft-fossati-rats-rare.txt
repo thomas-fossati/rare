@@ -5,10 +5,12 @@
 Remote ATtestation ProcedureS                                 T. Fossati
 Internet-Draft                                                    Linaro
 Intended status: Standards Track                             H. Birkholz
-Expires: 24 December 2026                                 Fraunhofer SIT
+Expires: 25 December 2026                                 Fraunhofer SIT
                                                                  N. Ritz
                                                              Independent
-                                                            22 June 2026
+                                                               P. Howard
+                                                                     Arm
+                                                            23 June 2026
 
 
                              RATS ReST APIs
@@ -56,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 December 2026.
+   This Internet-Draft will expire on 25 December 2026.
 
 Copyright Notice
 
@@ -201,9 +203,9 @@ Acknowledgments
    The APIs described in this document were designed and prototyped as
    part of the Veraison project over the past few years.  The authors
    would like to thank the Veraison community, and in particular Dhanus
-   M Lal, Ding Ma, Ian Chin Wang, Ian Oliver, Jag Raman, Paul Howard,
-   Sergei Trofimov, Shefali Kamal, Simon Frost and Yogesh Deshpande, for
-   their invaluable contributions.
+   M Lal, Ding Ma, Ian Chin Wang, Ian Oliver, Jag Raman, Sergei
+   Trofimov, Shefali Kamal, Simon Frost and Yogesh Deshpande, for their
+   invaluable contributions.
 
 Authors' Addresses
 
@@ -220,3 +222,8 @@ Authors' Addresses
    Nathanael Ritz
    Independent
    Email: ietf@nritz.com
+
+
+   Paul Howard
+   Arm
+   Email: paul.howard@arm.com
