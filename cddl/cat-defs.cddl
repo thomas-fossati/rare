@@ -1,0 +1,3 @@
+RATSD-CLAIMS-PROFILE = "tag:github.com,2026:veraison/ratsd/v2"
+RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"" .cat RATSD-CLAIMS-PROFILE) .cat "\""
+RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"

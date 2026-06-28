@@ -1,0 +1,10 @@
+;# import cbor-record from cmw-autogen as cmw
+
+cat-collection = {
+  "__cmwc_t" => RATSD-CMWCT
+  "__ratsd" => [
+    RATSD-CLAIMS-MEDIA-TYPE,
+    bytes .cbor ratsd-claims
+  ]
+  + text => cmw.cbor-record
+}
