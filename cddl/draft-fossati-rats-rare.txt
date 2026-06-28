@@ -216,7 +216,7 @@ A.1.  Composite Attestation Token
    cat-collection = {
      "__cmwc_t" => RATSD-CMWCT,
      "__ratsd" => [
-           RATSD-CLAIMS-MEDIA-TYPE,
+           RATSD-CLAIMS-MEDIATYPE,
            bytes .cbor ratsd-claims,
    ],
      + text => cmw.cbor-record,
@@ -236,7 +236,7 @@ A.1.  Composite Attestation Token
              ),
    })
    nonce_adjust_function_type /= "shake-128" / "shake-256"
-   RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"\
+   RATSD-CLAIMS-MEDIATYPE = ("application/eat-ucs+cbor; eat_profile=\"\
                                   " .cat RATSD-CLAIMS-PROFILE) .cat "\""
    RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"
    cose.label = int / tstr
