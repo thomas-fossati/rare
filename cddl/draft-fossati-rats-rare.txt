@@ -1,0 +1,523 @@
+
+
+
+
+Remote ATtestation ProcedureS                                 T. Fossati
+Internet-Draft                                               Independent
+Intended status: Standards Track                             H. Birkholz
+Expires: 30 December 2026                                 Fraunhofer SIT
+                                                                 N. Ritz
+                                                             Independent
+                                                               P. Howard
+                                                                     Arm
+                                                            28 June 2026
+
+
+                             RATS ReST APIs
+                     draft-fossati-rats-rare-latest
+
+Abstract
+
+   This document describes a set of REST APIs that can be used by RATS
+   roles to interact.  These APIs facilitate the discovery of a role's
+   capabilities, as well as the negotiation and exchange of RATS
+   Conceptual Messages in several key scenarios, including Evidence
+   gathering, Evidence appraisal, Endorsements and Reference Value
+   management.  This document aims to present a useful subset of
+   possible RATS interaction patterns, rather than covering all of them.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at https://thomas-
+   fossati.github.io/rare/draft-fossati-rats-rare.html.  Status
+   information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-fossati-rats-rare/.
+
+   Discussion of this document takes place on the Remote ATtestation
+   ProcedureS Working Group mailing list (mailto:rats@ietf.org), which
+   is archived at https://mailarchive.ietf.org/arch/browse/rats/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/rats/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/thomas-fossati/rare.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 30 December 2026.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Appraisal
+     3.1.  Discovery
+     3.2.  Stateless Challenge-Response
+     3.3.  Stateful Challenge-Response
+       3.3.1.  Synchronous Completion
+       3.3.2.  Asynchronous Completion
+   4.  Endorsements and Reference Values Management
+     4.1.  Discovery
+     4.2.  RIM Provisioning
+     4.3.  RIM Retrieval, Activation and Deactivation
+       4.3.1.  The Query Object
+       4.3.2.  Activating RIMs
+       4.3.3.  Deactivating RIMs
+       4.3.4.  Retrieving RIMs
+   5.  Evidence Collection
+     5.1.  Discovery
+     5.2.  Evidence Format for Composite Evidence
+     5.3.  Challenge-Response
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  Normative References
+   Appendix A.  Collated CDDL
+     A.1.  Composite Attestation Token
+   Appendix B.  OpenAPI Schema
+   Acknowledgments
+   Authors' Addresses
+
+1.  Introduction
+
+   TODO Introduction
+
+   Section 3 describes APIs for the appraisal of Evidence.  Section 4
+   describes APIs for Endorsements and Reference Values management.
+   Section 5 describes APIs for requesting Evidence from a (composite)
+   Attester, together with a data format for aggregating composite
+   Evidence based on Collection CMWs [I-D.ietf-rats-msg-wrap].  The
+   Evidence appraisal and Evidence request APIs are both based on the
+   challenge-response interaction model described in Section 7.1 of
+   [I-D.ietf-rats-reference-interaction-models].
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Appraisal
+
+3.1.  Discovery
+
+3.2.  Stateless Challenge-Response
+
+3.3.  Stateful Challenge-Response
+
+3.3.1.  Synchronous Completion
+
+3.3.2.  Asynchronous Completion
+
+4.  Endorsements and Reference Values Management
+
+4.1.  Discovery
+
+4.2.  RIM Provisioning
+
+4.3.  RIM Retrieval, Activation and Deactivation
+
+4.3.1.  The Query Object
+
+4.3.2.  Activating RIMs
+
+4.3.3.  Deactivating RIMs
+
+4.3.4.  Retrieving RIMs
+
+5.  Evidence Collection
+
+5.1.  Discovery
+
+5.2.  Evidence Format for Composite Evidence
+
+5.3.  Challenge-Response
+
+6.  Security Considerations
+
+   TODO Security
+
+7.  IANA Considerations
+
+   TODO IANA
+
+8.  Normative References
+
+   [I-D.ietf-rats-msg-wrap]
+              Birkholz, H., Smith, N., Fossati, T., Tschofenig, H., and
+              D. Glaze, "RATS Conceptual Messages Wrapper (CMW)", Work
+              in Progress, Internet-Draft, draft-ietf-rats-msg-wrap-23,
+              11 December 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-msg-wrap-23>.
+
+   [I-D.ietf-rats-reference-interaction-models]
+              Birkholz, H., Eckel, M., Pan, W., and E. Voit, "Reference
+              Interaction Models for Remote Attestation Procedures",
+              Work in Progress, Internet-Draft, draft-ietf-rats-
+              reference-interaction-models-17, 2 April 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-rats-
+              reference-interaction-models-17>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+Appendix A.  Collated CDDL
+
+A.1.  Composite Attestation Token
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   cat-token = #6.18([
+       protected: bytes .cbor phdrs,
+       unprotected: uhdrs,
+       payload: bytes .cbor cat-collection,
+       signature: bytes,
+   ])
+   phdrs = {
+     ? &(x5chain: 33) => bytes / [2*certs: bytes],
+     * cose.label => cose.values,
+   }
+   uhdrs = {* cose.label => cose.values}
+   cat-collection = {
+     "__cmwc_t" => RATSD-CMWCT,
+     "__ratsd" => [
+           RATSD-CLAIMS-MEDIA-TYPE,
+           bytes .cbor ratsd-claims,
+   ],
+     + text => cmw.cbor-record,
+   }
+   RATSD-CLAIMS-PROFILE = "tag:github.com,2026:veraison/ratsd/v2"
+   RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"\
+                                  " .cat RATSD-CLAIMS-PROFILE) .cat "\""
+   RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"
+   ratsd-claims = #6.601({
+       &(eat_profile: 265) => RATSD-CLAIMS-PROFILE,
+       &(eat_nonce: 10) => bytes .size (8 .. 64),
+       &(oemid: 258) => eat.oemid-pen / eat.oemid-ieee / eat.oemid-\
+                                                                 random,
+       &(sw-name: 270) => text,
+       &(sw-version: 271) => eat.sw-version-type,
+       ? (
+                     &(nonce_adjust_function: -65537) => \
+                                             nonce_adjust_function_type,
+                     &(nonce_adjust_map: -65538) => {+ text => uint},
+             ),
+   })
+   nonce_adjust_function_type /= "shake-128" / "shake-256"
+   cmw.start = cmw.cmw
+   cmw.cmw = cmw.json-cmw / cmw.cbor-cmw
+   cmw.json-cmw = cmw.json-record / cmw.json-collection
+   cmw.cbor-cmw = cmw.cbor-record / cmw.cbor-collection / cmw.$cbor-tag
+   cmw.json-record = [
+     type: cmw.media-type,
+     value: cmw.base64url-string,
+     ? ind: uint .bits cmw.cm-type,
+   ]
+   cmw.cbor-record = [
+     type: cmw.coap-content-format-type / cmw.media-type,
+     value: bytes,
+     ? ind: uint .bits cmw.cm-type,
+   ]
+   cmw.tag-cm-cbor<tn, fmt> = #6.<tn>(bytes .cbor fmt)
+   cmw.tag-cm-data<tn> = #6.<tn>(bytes)
+   cmw.json-collection = {
+     ? __cmwc_t: ~uri / cmw.oid,
+     + &(label: text) => cmw.json-cmw,
+   }
+   cmw.cbor-collection = {
+     ? __cmwc_t: ~uri / cmw.oid,
+     + &(label: int / text) => cmw.cbor-cmw,
+   }
+   cmw.media-type = text .abnf ("Content-Type" .cat cmw.Content-Type-\
+                                                                   ABNF)
+   cmw.base64url-string = text .regexp "[A-Za-z0-9_-]+"
+   cmw.coap-content-format-type = uint .size 2
+   cmw.oid = text .regexp "([0-2])((\\.0)|(\\.[1-9][0-9]*))*"
+   cmw.cm-type = &(
+     reference-values: 0,
+     endorsements: 1,
+     evidence: 2,
+     attestation-results: 3,
+     appraisal-policy: 4,
+   )
+   cmw.Content-Type-ABNF = '
+
+   Content-Type   = Media-Type-Name *( *SP ";" *SP parameter )
+   parameter      = token "=" ( token / quoted-string )
+
+   token          = 1*tchar
+   tchar          = "!" / "#" / "$" / "%" / "&" / "\'" / "*"
+                  / "+" / "-" / "." / "^" / "_" / "`" / "|" / "~"
+                  / DIGIT / ALPHA
+   quoted-string  = %x22 *( qdtext / quoted-pair ) %x22
+   qdtext         = SP / %x21 / %x23-5B / %x5D-7E
+   quoted-pair    = "\\" ( SP / VCHAR )
+
+   Media-Type-Name = type-name "/" subtype-name
+
+   type-name = restricted-name
+   subtype-name = restricted-name
+
+   restricted-name = restricted-name-first *126restricted-name-chars
+   restricted-name-first  = ALPHA / DIGIT
+   restricted-name-chars  = ALPHA / DIGIT / "!" / "#" /
+                            "$" / "&" / "-" / "^" / "_"
+   restricted-name-chars =/ "." ; Characters before first dot always
+                                ; specify a facet name
+   restricted-name-chars =/ "+" ; Characters after last plus always
+                                ; specify a structured syntax suffix
+
+   DIGIT     =  %x30-39           ; 0 - 9
+   POS-DIGIT =  %x31-39           ; 1 - 9
+   ALPHA     =  %x41-5A / %x61-7A ; A - Z / a - z
+   SP        =  %x20
+   VCHAR     =  %x21-7E           ; printable ASCII (no SP)
+   '
+   cmw.$cbor-tag /= cmw.tag-cm-data<1668612070> / cmw.tag-cm-cbor<\
+                                            1668612069, cmw.my-evidence>
+   cmw.my-evidence = {&(eat_nonce: 10) => bytes .size (8 .. 64)}
+   eat.time-int = #6.1(int)
+   eat.binary-data = eat.JC<eat.base64-url-text, bstr>
+   eat.base64-url-text = tstr .regexp "[A-Za-z0-9_-]+"
+   eat.general-oid = eat.JC<eat.json-oid, ~oid>
+   eat.json-oid = tstr .regexp "([0-2])((\\.0)|(\\.[1-9][0-9]*))*"
+   eat.general-uri = eat.JC<text, ~uri>
+   eat.coap-content-format = uint .le 65535
+   eat.$$Claims-Set-Claims //= (eat.nonce-label => eat.nonce-type / [2*\
+   eat.nonce-type] // eat.ueid-label => eat.ueid-type // eat.sueids-\
+   label => eat.sueids-type // eat.oemid-label => eat.oemid-pen / eat.\
+   oemid-ieee / eat.oemid-random // eat.hardware-version-label => eat.\
+   hardware-version-type // eat.hardware-model-label => eat.hardware-\
+   model-type // eat.sw-name-label => tstr // eat.sw-version-label => \
+   eat.sw-version-type // eat.oem-boot-label => bool // eat.debug-\
+   status-label => eat.debug-status-type // eat.location-label => eat.\
+   location-type // eat.uptime-label => uint // eat.boot-seed-label => \
+   eat.binary-data // eat.boot-count-label => uint // eat.intended-use-\
+   label => eat.intended-use-type // eat.dloas-label => [+ eat.dloa-\
+   type] // eat.profile-label => eat.general-uri / eat.general-oid // \
+   eat.manifests-label => eat.manifests-type // eat.measurements-label \
+   => eat.measurements-type // eat.measurement-results-label => [+ eat.\
+   measurement-results-group] // eat.iss-claim-label => eat.string-or-\
+   uri // eat.sub-claim-label => eat.string-or-uri // eat.aud-claim-\
+   label => eat.string-or-uri // eat.exp-claim-label => ~time // eat.\
+   nbf-claim-label => ~time // eat.iat-claim-label => ~time // eat.cti-\
+                                                   claim-label => bytes)
+   eat.nonce-type = eat.JC<tstr .size (8 .. 88), bstr .size (8 .. 64)>
+   eat.ueid-type-binary = bstr .size (7 .. 33)
+   eat.ueid-type-text = tstr .b64u eat.ueid-type-binary
+   eat.ueid-type = eat.JC<eat.ueid-type-text, eat.ueid-type-binary>
+   eat.sueids-type = {+ tstr => eat.ueid-type}
+   eat.oemid-pen = int
+   eat.oemid-ieee = eat.JC<eat.oemid-ieee-json, eat.oemid-ieee-cbor>
+   eat.oemid-ieee-cbor = bstr .size 3
+   eat.oemid-ieee-json = tstr .b64u eat.oemid-ieee-cbor
+   eat.oemid-random = eat.JC<eat.oemid-random-json, eat.oemid-random-\
+                                                                   cbor>
+   eat.oemid-random-cbor = bstr .size 16
+   eat.oemid-random-json = tstr .b64u eat.oemid-random-cbor
+   eat.hardware-version-type = [
+     version: tstr,
+     ? scheme: $version-scheme,
+   ]
+   eat.hardware-model-type-binary = bstr .size (1 .. 32)
+   eat.hardware-model-type-text = tstr .b64u eat.hardware-model-type-\
+                                                                  binary
+   eat.hardware-model-type = eat.JC<eat.hardware-model-type-text, eat.\
+                                             hardware-model-type-binary>
+   eat.sw-version-type = [
+     version: tstr,
+     ? scheme: $version-scheme,
+   ]
+   eat.debug-status-type = eat.ds-enabled / eat.disabled / eat.disabled\
+   -since-boot / eat.disabled-permanently / eat.disabled-fully-and-\
+                                                             permanently
+   eat.ds-enabled = eat.JC<"enabled", 0>
+   eat.disabled = eat.JC<"disabled", 1>
+   eat.disabled-since-boot = eat.JC<"disabled-since-boot", 2>
+   eat.disabled-permanently = eat.JC<"disabled-permanently", 3>
+   eat.disabled-fully-and-permanently = eat.JC<"disabled-fully-and-\
+                                                        permanently", 4>
+   eat.location-type = {
+     eat.latitude => number,
+     eat.longitude => number,
+     ? eat.altitude => number,
+     ? eat.accuracy => number,
+     ? eat.altitude-accuracy => number,
+     ? eat.heading => number,
+     ? eat.speed => number,
+     ? eat.timestamp => ~eat.time-int,
+     ? eat.age => uint,
+   }
+   eat.latitude = eat.JC<"latitude", 1>
+   eat.longitude = eat.JC<"longitude", 2>
+   eat.altitude = eat.JC<"altitude", 3>
+   eat.accuracy = eat.JC<"accuracy", 4>
+   eat.altitude-accuracy = eat.JC<"altitude-accuracy", 5>
+   eat.heading = eat.JC<"heading", 6>
+   eat.speed = eat.JC<"speed", 7>
+   eat.timestamp = eat.JC<"timestamp", 8>
+   eat.age = eat.JC<"age", 9>
+   eat.intended-use-type = eat.JC<text, int>
+   eat.dloa-type = [
+     dloa_registrar: eat.general-uri,
+     dloa_platform_label: text,
+     ? dloa_application_label: text,
+   ]
+   eat.manifests-type = [+ eat.manifest-format]
+   eat.manifest-format = [
+     content-type: eat.coap-content-format,
+     content-format: eat.JC<eat.$manifest-body-json, eat.$manifest-body\
+                                                                 -cbor>,
+   ]
+   eat.$manifest-body-cbor /= bytes .cbor untagged-coswid
+   eat.$manifest-body-json /= eat.base64-url-text
+   eat.measurements-type = [+ eat.measurements-format]
+   eat.measurements-format = [
+     content-type: eat.coap-content-format,
+     content-format: eat.JC<eat.$measurements-body-json, eat.$\
+                                                measurements-body-cbor>,
+   ]
+   eat.$measurements-body-cbor /= bytes .cbor untagged-coswid
+   eat.$measurements-body-json /= eat.base64-url-text
+   eat.measurement-results-group = [
+     measurement-system: tstr,
+     measurement-results: [+ eat.individual-result],
+   ]
+   eat.individual-result = [
+     result-id: tstr / eat.binary-data,
+     result: eat.result-type,
+   ]
+   eat.result-type = eat.comparison-success / eat.comparison-fail / eat\
+                            .comparison-not-run / eat.measurement-absent
+   eat.comparison-success = eat.JC<"success", 1>
+   eat.comparison-fail = eat.JC<"fail", 2>
+   eat.comparison-not-run = eat.JC<"not-run", 3>
+   eat.measurement-absent = eat.JC<"absent", 4>
+   eat.Detached-Submodule-Digest = [
+     hash-algorithm: text / int,
+     digest: eat.binary-data,
+   ]
+   eat.BUNDLE-Messages = eat.BUNDLE-Tagged-Message / eat.BUNDLE-\
+                                                        Untagged-Message
+   eat.BUNDLE-Tagged-Message = #6.602(eat.BUNDLE-Untagged-Message)
+   eat.BUNDLE-Untagged-Message = eat.Detached-EAT-Bundle
+   eat.Detached-EAT-Bundle = [
+     main-token: Nested-Token,
+     detached-claims-sets: {+ tstr => eat.JC<eat.json-wrapped-claims-\
+                                     set, eat.cbor-wrapped-claims-set>},
+   ]
+   eat.json-wrapped-claims-set = eat.base64-url-text
+   eat.cbor-wrapped-claims-set = bstr .cbor eat.Claims-Set
+   eat.nonce-label = eat.JC<"eat_nonce", 10>
+   eat.ueid-label = eat.JC<"ueid", 256>
+   eat.sueids-label = eat.JC<"sueids", 257>
+   eat.oemid-label = eat.JC<"oemid", 258>
+   eat.hardware-model-label = eat.JC<"hwmodel", 259>
+   eat.hardware-version-label = eat.JC<"hwversion", 260>
+   eat.uptime-label = eat.JC<"uptime", 261>
+   eat.oem-boot-label = eat.JC<"oemboot", 262>
+   eat.debug-status-label = eat.JC<"dbgstat", 263>
+   eat.location-label = eat.JC<"location", 264>
+   eat.profile-label = eat.JC<"eat_profile", 265>
+   eat.submods-label = eat.JC<"submods", 266>
+   eat.boot-count-label = eat.JC<"bootcount", 267>
+   eat.boot-seed-label = eat.JC<"bootseed", 268>
+   eat.dloas-label = eat.JC<"dloas", 269>
+   eat.sw-name-label = eat.JC<"swname", 270>
+   eat.sw-version-label = eat.JC<"swversion", 271>
+   eat.manifests-label = eat.JC<"manifests", 272>
+   eat.measurements-label = eat.JC<"measurements", 273>
+   eat.measurement-results-label = eat.JC<"measres", 274>
+   eat.intended-use-label = eat.JC<"intuse", 275>
+   eat.Claims-Set = {
+     * eat.$$Claims-Set-Claims,
+     * eat.Claim-Label .feature "extended-claims-label" => any,
+   }
+   eat.Claim-Label = int / text
+   eat.string-or-uri = text
+   eat.iss-claim-label = eat.JC<"iss", 1>
+   eat.sub-claim-label = eat.JC<"sub", 2>
+   eat.aud-claim-label = eat.JC<"aud", 3>
+   eat.exp-claim-label = eat.JC<"exp", 4>
+   eat.nbf-claim-label = eat.JC<"nbf", 5>
+   eat.iat-claim-label = eat.JC<"iat", 6>
+   eat.cti-claim-label = eat.CBOR-ONLY<7>
+   eat.JSON-ONLY<J> = J .feature "json"
+   eat.CBOR-ONLY<C> = C .feature "cbor"
+   eat.JC<J, C> = eat.JSON-ONLY<J> / eat.CBOR-ONLY<C>
+   cose.label = int / tstr
+   cose.values = any
+   cbor-record = cmw.cbor-record
+   sw-version-type = eat.sw-version-type
+   oemid-pen = eat.oemid-pen
+   oemid-ieee = eat.oemid-ieee
+   oemid-random = eat.oemid-random
+
+Appendix B.  OpenAPI Schema
+
+   TODO openapi
+
+Acknowledgments
+
+   The APIs described in this document were designed and prototyped as
+   part of the Veraison project over the past few years.  The authors
+   would like to thank the Veraison community, and in particular Dhanus
+   M Lal, Ding Ma, Ian Chin Wang, Ian Oliver, Jag Raman, Sergei
+   Trofimov, Shefali Kamal, Simon Frost and Yogesh Deshpande, for their
+   invaluable contributions.
+
+Authors' Addresses
+
+   Thomas Fossati
+   Independent
+   Email: tho.ietf@gmail.org
+
+
+   Henk Birkholz
+   Fraunhofer SIT
+   Email: henk.birkholz@ietf.contact
+
+
+   Nathanael Ritz
+   Independent
+   Email: ietf@nritz.com
+
+
+   Paul Howard
+   Arm
+   Email: paul.howard@arm.com
