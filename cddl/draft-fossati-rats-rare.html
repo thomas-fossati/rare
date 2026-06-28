@@ -1489,9 +1489,6 @@ cat-collection = {
   + text =&gt; cmw.cbor-record,
 }
 RATSD-CLAIMS-PROFILE = "tag:github.com,2026:veraison/ratsd/v2"
-RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"\
-                               " .cat RATSD-CLAIMS-PROFILE) .cat "\""
-RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"
 ratsd-claims = #6.601({
     &amp;(eat_profile: 265) =&gt; RATSD-CLAIMS-PROFILE,
     &amp;(eat_nonce: 10) =&gt; bytes .size (8 .. 64),
@@ -1506,35 +1503,20 @@ ratsd-claims = #6.601({
           ),
 })
 nonce_adjust_function_type /= "shake-128" / "shake-256"
-cmw.start = cmw.cmw
-cmw.cmw = cmw.json-cmw / cmw.cbor-cmw
-cmw.json-cmw = cmw.json-record / cmw.json-collection
-cmw.cbor-cmw = cmw.cbor-record / cmw.cbor-collection / cmw.$cbor-tag
-cmw.json-record = [
-  type: cmw.media-type,
-  value: cmw.base64url-string,
-  ? ind: uint .bits cmw.cm-type,
-]
+RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"\
+                               " .cat RATSD-CLAIMS-PROFILE) .cat "\""
+RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"
+cose.label = int / tstr
+cose.values = any
+cbor-record = cmw.cbor-record
 cmw.cbor-record = [
   type: cmw.coap-content-format-type / cmw.media-type,
   value: bytes,
   ? ind: uint .bits cmw.cm-type,
 ]
-cmw.tag-cm-cbor&lt;tn, fmt&gt; = #6.&lt;tn&gt;(bytes .cbor fmt)
-cmw.tag-cm-data&lt;tn&gt; = #6.&lt;tn&gt;(bytes)
-cmw.json-collection = {
-  ? __cmwc_t: ~uri / cmw.oid,
-  + &amp;(label: text) =&gt; cmw.json-cmw,
-}
-cmw.cbor-collection = {
-  ? __cmwc_t: ~uri / cmw.oid,
-  + &amp;(label: int / text) =&gt; cmw.cbor-cmw,
-}
+cmw.coap-content-format-type = uint .size 2
 cmw.media-type = text .abnf ("Content-Type" .cat cmw.Content-Type-\
                                                                 ABNF)
-cmw.base64url-string = text .regexp "[A-Za-z0-9_-]+"
-cmw.coap-content-format-type = uint .size 2
-cmw.oid = text .regexp "([0-2])((\\.0)|(\\.[1-9][0-9]*))*"
 cmw.cm-type = &amp;(
   reference-values: 0,
   endorsements: 1,
@@ -1575,182 +1557,22 @@ ALPHA     =  %x41-5A / %x61-7A ; A - Z / a - z
 SP        =  %x20
 VCHAR     =  %x21-7E           ; printable ASCII (no SP)
 '
-cmw.$cbor-tag /= cmw.tag-cm-data&lt;1668612070&gt; / cmw.tag-cm-cbor&lt;\
-                                         1668612069, cmw.my-evidence&gt;
-cmw.my-evidence = {&amp;(eat_nonce: 10) =&gt; bytes .size (8 .. 64)}
-eat.time-int = #6.1(int)
-eat.binary-data = eat.JC&lt;eat.base64-url-text, bstr&gt;
-eat.base64-url-text = tstr .regexp "[A-Za-z0-9_-]+"
-eat.general-oid = eat.JC&lt;eat.json-oid, ~oid&gt;
-eat.json-oid = tstr .regexp "([0-2])((\\.0)|(\\.[1-9][0-9]*))*"
-eat.general-uri = eat.JC&lt;text, ~uri&gt;
-eat.coap-content-format = uint .le 65535
-eat.$$Claims-Set-Claims //= (eat.nonce-label =&gt; eat.nonce-type / [2*\
-eat.nonce-type] // eat.ueid-label =&gt; eat.ueid-type // eat.sueids-\
-label =&gt; eat.sueids-type // eat.oemid-label =&gt; eat.oemid-pen / eat.\
-oemid-ieee / eat.oemid-random // eat.hardware-version-label =&gt; eat.\
-hardware-version-type // eat.hardware-model-label =&gt; eat.hardware-\
-model-type // eat.sw-name-label =&gt; tstr // eat.sw-version-label =&gt; \
-eat.sw-version-type // eat.oem-boot-label =&gt; bool // eat.debug-\
-status-label =&gt; eat.debug-status-type // eat.location-label =&gt; eat.\
-location-type // eat.uptime-label =&gt; uint // eat.boot-seed-label =&gt; \
-eat.binary-data // eat.boot-count-label =&gt; uint // eat.intended-use-\
-label =&gt; eat.intended-use-type // eat.dloas-label =&gt; [+ eat.dloa-\
-type] // eat.profile-label =&gt; eat.general-uri / eat.general-oid // \
-eat.manifests-label =&gt; eat.manifests-type // eat.measurements-label \
-=&gt; eat.measurements-type // eat.measurement-results-label =&gt; [+ eat.\
-measurement-results-group] // eat.iss-claim-label =&gt; eat.string-or-\
-uri // eat.sub-claim-label =&gt; eat.string-or-uri // eat.aud-claim-\
-label =&gt; eat.string-or-uri // eat.exp-claim-label =&gt; ~time // eat.\
-nbf-claim-label =&gt; ~time // eat.iat-claim-label =&gt; ~time // eat.cti-\
-                                                claim-label =&gt; bytes)
-eat.nonce-type = eat.JC&lt;tstr .size (8 .. 88), bstr .size (8 .. 64)&gt;
-eat.ueid-type-binary = bstr .size (7 .. 33)
-eat.ueid-type-text = tstr .b64u eat.ueid-type-binary
-eat.ueid-type = eat.JC&lt;eat.ueid-type-text, eat.ueid-type-binary&gt;
-eat.sueids-type = {+ tstr =&gt; eat.ueid-type}
-eat.oemid-pen = int
-eat.oemid-ieee = eat.JC&lt;eat.oemid-ieee-json, eat.oemid-ieee-cbor&gt;
-eat.oemid-ieee-cbor = bstr .size 3
-eat.oemid-ieee-json = tstr .b64u eat.oemid-ieee-cbor
-eat.oemid-random = eat.JC&lt;eat.oemid-random-json, eat.oemid-random-\
-                                                                cbor&gt;
-eat.oemid-random-cbor = bstr .size 16
-eat.oemid-random-json = tstr .b64u eat.oemid-random-cbor
-eat.hardware-version-type = [
-  version: tstr,
-  ? scheme: $version-scheme,
-]
-eat.hardware-model-type-binary = bstr .size (1 .. 32)
-eat.hardware-model-type-text = tstr .b64u eat.hardware-model-type-\
-                                                               binary
-eat.hardware-model-type = eat.JC&lt;eat.hardware-model-type-text, eat.\
-                                          hardware-model-type-binary&gt;
+sw-version-type = eat.sw-version-type
 eat.sw-version-type = [
   version: tstr,
   ? scheme: $version-scheme,
 ]
-eat.debug-status-type = eat.ds-enabled / eat.disabled / eat.disabled\
--since-boot / eat.disabled-permanently / eat.disabled-fully-and-\
-                                                          permanently
-eat.ds-enabled = eat.JC&lt;"enabled", 0&gt;
-eat.disabled = eat.JC&lt;"disabled", 1&gt;
-eat.disabled-since-boot = eat.JC&lt;"disabled-since-boot", 2&gt;
-eat.disabled-permanently = eat.JC&lt;"disabled-permanently", 3&gt;
-eat.disabled-fully-and-permanently = eat.JC&lt;"disabled-fully-and-\
-                                                     permanently", 4&gt;
-eat.location-type = {
-  eat.latitude =&gt; number,
-  eat.longitude =&gt; number,
-  ? eat.altitude =&gt; number,
-  ? eat.accuracy =&gt; number,
-  ? eat.altitude-accuracy =&gt; number,
-  ? eat.heading =&gt; number,
-  ? eat.speed =&gt; number,
-  ? eat.timestamp =&gt; ~eat.time-int,
-  ? eat.age =&gt; uint,
-}
-eat.latitude = eat.JC&lt;"latitude", 1&gt;
-eat.longitude = eat.JC&lt;"longitude", 2&gt;
-eat.altitude = eat.JC&lt;"altitude", 3&gt;
-eat.accuracy = eat.JC&lt;"accuracy", 4&gt;
-eat.altitude-accuracy = eat.JC&lt;"altitude-accuracy", 5&gt;
-eat.heading = eat.JC&lt;"heading", 6&gt;
-eat.speed = eat.JC&lt;"speed", 7&gt;
-eat.timestamp = eat.JC&lt;"timestamp", 8&gt;
-eat.age = eat.JC&lt;"age", 9&gt;
-eat.intended-use-type = eat.JC&lt;text, int&gt;
-eat.dloa-type = [
-  dloa_registrar: eat.general-uri,
-  dloa_platform_label: text,
-  ? dloa_application_label: text,
-]
-eat.manifests-type = [+ eat.manifest-format]
-eat.manifest-format = [
-  content-type: eat.coap-content-format,
-  content-format: eat.JC&lt;eat.$manifest-body-json, eat.$manifest-body\
-                                                              -cbor&gt;,
-]
-eat.$manifest-body-cbor /= bytes .cbor untagged-coswid
-eat.$manifest-body-json /= eat.base64-url-text
-eat.measurements-type = [+ eat.measurements-format]
-eat.measurements-format = [
-  content-type: eat.coap-content-format,
-  content-format: eat.JC&lt;eat.$measurements-body-json, eat.$\
-                                             measurements-body-cbor&gt;,
-]
-eat.$measurements-body-cbor /= bytes .cbor untagged-coswid
-eat.$measurements-body-json /= eat.base64-url-text
-eat.measurement-results-group = [
-  measurement-system: tstr,
-  measurement-results: [+ eat.individual-result],
-]
-eat.individual-result = [
-  result-id: tstr / eat.binary-data,
-  result: eat.result-type,
-]
-eat.result-type = eat.comparison-success / eat.comparison-fail / eat\
-                         .comparison-not-run / eat.measurement-absent
-eat.comparison-success = eat.JC&lt;"success", 1&gt;
-eat.comparison-fail = eat.JC&lt;"fail", 2&gt;
-eat.comparison-not-run = eat.JC&lt;"not-run", 3&gt;
-eat.measurement-absent = eat.JC&lt;"absent", 4&gt;
-eat.Detached-Submodule-Digest = [
-  hash-algorithm: text / int,
-  digest: eat.binary-data,
-]
-eat.BUNDLE-Messages = eat.BUNDLE-Tagged-Message / eat.BUNDLE-\
-                                                     Untagged-Message
-eat.BUNDLE-Tagged-Message = #6.602(eat.BUNDLE-Untagged-Message)
-eat.BUNDLE-Untagged-Message = eat.Detached-EAT-Bundle
-eat.Detached-EAT-Bundle = [
-  main-token: Nested-Token,
-  detached-claims-sets: {+ tstr =&gt; eat.JC&lt;eat.json-wrapped-claims-\
-                                  set, eat.cbor-wrapped-claims-set&gt;},
-]
-eat.json-wrapped-claims-set = eat.base64-url-text
-eat.cbor-wrapped-claims-set = bstr .cbor eat.Claims-Set
-eat.nonce-label = eat.JC&lt;"eat_nonce", 10&gt;
-eat.ueid-label = eat.JC&lt;"ueid", 256&gt;
-eat.sueids-label = eat.JC&lt;"sueids", 257&gt;
-eat.oemid-label = eat.JC&lt;"oemid", 258&gt;
-eat.hardware-model-label = eat.JC&lt;"hwmodel", 259&gt;
-eat.hardware-version-label = eat.JC&lt;"hwversion", 260&gt;
-eat.uptime-label = eat.JC&lt;"uptime", 261&gt;
-eat.oem-boot-label = eat.JC&lt;"oemboot", 262&gt;
-eat.debug-status-label = eat.JC&lt;"dbgstat", 263&gt;
-eat.location-label = eat.JC&lt;"location", 264&gt;
-eat.profile-label = eat.JC&lt;"eat_profile", 265&gt;
-eat.submods-label = eat.JC&lt;"submods", 266&gt;
-eat.boot-count-label = eat.JC&lt;"bootcount", 267&gt;
-eat.boot-seed-label = eat.JC&lt;"bootseed", 268&gt;
-eat.dloas-label = eat.JC&lt;"dloas", 269&gt;
-eat.sw-name-label = eat.JC&lt;"swname", 270&gt;
-eat.sw-version-label = eat.JC&lt;"swversion", 271&gt;
-eat.manifests-label = eat.JC&lt;"manifests", 272&gt;
-eat.measurements-label = eat.JC&lt;"measurements", 273&gt;
-eat.measurement-results-label = eat.JC&lt;"measres", 274&gt;
-eat.intended-use-label = eat.JC&lt;"intuse", 275&gt;
-eat.Claims-Set = {
-  * eat.$$Claims-Set-Claims,
-  * eat.Claim-Label .feature "extended-claims-label" =&gt; any,
-}
-eat.Claim-Label = int / text
-eat.string-or-uri = text
-eat.iss-claim-label = eat.JC&lt;"iss", 1&gt;
-eat.sub-claim-label = eat.JC&lt;"sub", 2&gt;
-eat.aud-claim-label = eat.JC&lt;"aud", 3&gt;
-eat.exp-claim-label = eat.JC&lt;"exp", 4&gt;
-eat.nbf-claim-label = eat.JC&lt;"nbf", 5&gt;
-eat.iat-claim-label = eat.JC&lt;"iat", 6&gt;
-eat.cti-claim-label = eat.CBOR-ONLY&lt;7&gt;
+eat.oemid-pen = int
+eat.oemid-ieee = eat.JC&lt;eat.oemid-ieee-json, eat.oemid-ieee-cbor&gt;
+eat.oemid-random = eat.JC&lt;eat.oemid-random-json, eat.oemid-random-\
+                                                                cbor&gt;
+eat.JC&lt;J, C&gt; = eat.JSON-ONLY&lt;J&gt; / eat.CBOR-ONLY&lt;C&gt;
 eat.JSON-ONLY&lt;J&gt; = J .feature "json"
 eat.CBOR-ONLY&lt;C&gt; = C .feature "cbor"
-eat.JC&lt;J, C&gt; = eat.JSON-ONLY&lt;J&gt; / eat.CBOR-ONLY&lt;C&gt;
-cose.label = int / tstr
-cose.values = any
-cbor-record = cmw.cbor-record
-sw-version-type = eat.sw-version-type
+eat.oemid-ieee-json = tstr .b64u eat.oemid-ieee-cbor
+eat.oemid-ieee-cbor = bstr .size 3
+eat.oemid-random-json = tstr .b64u eat.oemid-random-cbor
+eat.oemid-random-cbor = bstr .size 16
 oemid-pen = eat.oemid-pen
 oemid-ieee = eat.oemid-ieee
 oemid-random = eat.oemid-random

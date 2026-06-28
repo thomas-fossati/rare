@@ -222,9 +222,6 @@ A.1.  Composite Attestation Token
      + text => cmw.cbor-record,
    }
    RATSD-CLAIMS-PROFILE = "tag:github.com,2026:veraison/ratsd/v2"
-   RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"\
-                                  " .cat RATSD-CLAIMS-PROFILE) .cat "\""
-   RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"
    ratsd-claims = #6.601({
        &(eat_profile: 265) => RATSD-CLAIMS-PROFILE,
        &(eat_nonce: 10) => bytes .size (8 .. 64),
@@ -239,35 +236,20 @@ A.1.  Composite Attestation Token
              ),
    })
    nonce_adjust_function_type /= "shake-128" / "shake-256"
-   cmw.start = cmw.cmw
-   cmw.cmw = cmw.json-cmw / cmw.cbor-cmw
-   cmw.json-cmw = cmw.json-record / cmw.json-collection
-   cmw.cbor-cmw = cmw.cbor-record / cmw.cbor-collection / cmw.$cbor-tag
-   cmw.json-record = [
-     type: cmw.media-type,
-     value: cmw.base64url-string,
-     ? ind: uint .bits cmw.cm-type,
-   ]
+   RATSD-CLAIMS-MEDIA-TYPE = ("application/eat-ucs+cbor; eat_profile=\"\
+                                  " .cat RATSD-CLAIMS-PROFILE) .cat "\""
+   RATSD-CMWCT = "tag:github.com,2025:veraison/ratsd/cmw/v2"
+   cose.label = int / tstr
+   cose.values = any
+   cbor-record = cmw.cbor-record
    cmw.cbor-record = [
      type: cmw.coap-content-format-type / cmw.media-type,
      value: bytes,
      ? ind: uint .bits cmw.cm-type,
    ]
-   cmw.tag-cm-cbor<tn, fmt> = #6.<tn>(bytes .cbor fmt)
-   cmw.tag-cm-data<tn> = #6.<tn>(bytes)
-   cmw.json-collection = {
-     ? __cmwc_t: ~uri / cmw.oid,
-     + &(label: text) => cmw.json-cmw,
-   }
-   cmw.cbor-collection = {
-     ? __cmwc_t: ~uri / cmw.oid,
-     + &(label: int / text) => cmw.cbor-cmw,
-   }
+   cmw.coap-content-format-type = uint .size 2
    cmw.media-type = text .abnf ("Content-Type" .cat cmw.Content-Type-\
                                                                    ABNF)
-   cmw.base64url-string = text .regexp "[A-Za-z0-9_-]+"
-   cmw.coap-content-format-type = uint .size 2
-   cmw.oid = text .regexp "([0-2])((\\.0)|(\\.[1-9][0-9]*))*"
    cmw.cm-type = &(
      reference-values: 0,
      endorsements: 1,
@@ -308,182 +290,22 @@ A.1.  Composite Attestation Token
    SP        =  %x20
    VCHAR     =  %x21-7E           ; printable ASCII (no SP)
    '
-   cmw.$cbor-tag /= cmw.tag-cm-data<1668612070> / cmw.tag-cm-cbor<\
-                                            1668612069, cmw.my-evidence>
-   cmw.my-evidence = {&(eat_nonce: 10) => bytes .size (8 .. 64)}
-   eat.time-int = #6.1(int)
-   eat.binary-data = eat.JC<eat.base64-url-text, bstr>
-   eat.base64-url-text = tstr .regexp "[A-Za-z0-9_-]+"
-   eat.general-oid = eat.JC<eat.json-oid, ~oid>
-   eat.json-oid = tstr .regexp "([0-2])((\\.0)|(\\.[1-9][0-9]*))*"
-   eat.general-uri = eat.JC<text, ~uri>
-   eat.coap-content-format = uint .le 65535
-   eat.$$Claims-Set-Claims //= (eat.nonce-label => eat.nonce-type / [2*\
-   eat.nonce-type] // eat.ueid-label => eat.ueid-type // eat.sueids-\
-   label => eat.sueids-type // eat.oemid-label => eat.oemid-pen / eat.\
-   oemid-ieee / eat.oemid-random // eat.hardware-version-label => eat.\
-   hardware-version-type // eat.hardware-model-label => eat.hardware-\
-   model-type // eat.sw-name-label => tstr // eat.sw-version-label => \
-   eat.sw-version-type // eat.oem-boot-label => bool // eat.debug-\
-   status-label => eat.debug-status-type // eat.location-label => eat.\
-   location-type // eat.uptime-label => uint // eat.boot-seed-label => \
-   eat.binary-data // eat.boot-count-label => uint // eat.intended-use-\
-   label => eat.intended-use-type // eat.dloas-label => [+ eat.dloa-\
-   type] // eat.profile-label => eat.general-uri / eat.general-oid // \
-   eat.manifests-label => eat.manifests-type // eat.measurements-label \
-   => eat.measurements-type // eat.measurement-results-label => [+ eat.\
-   measurement-results-group] // eat.iss-claim-label => eat.string-or-\
-   uri // eat.sub-claim-label => eat.string-or-uri // eat.aud-claim-\
-   label => eat.string-or-uri // eat.exp-claim-label => ~time // eat.\
-   nbf-claim-label => ~time // eat.iat-claim-label => ~time // eat.cti-\
-                                                   claim-label => bytes)
-   eat.nonce-type = eat.JC<tstr .size (8 .. 88), bstr .size (8 .. 64)>
-   eat.ueid-type-binary = bstr .size (7 .. 33)
-   eat.ueid-type-text = tstr .b64u eat.ueid-type-binary
-   eat.ueid-type = eat.JC<eat.ueid-type-text, eat.ueid-type-binary>
-   eat.sueids-type = {+ tstr => eat.ueid-type}
-   eat.oemid-pen = int
-   eat.oemid-ieee = eat.JC<eat.oemid-ieee-json, eat.oemid-ieee-cbor>
-   eat.oemid-ieee-cbor = bstr .size 3
-   eat.oemid-ieee-json = tstr .b64u eat.oemid-ieee-cbor
-   eat.oemid-random = eat.JC<eat.oemid-random-json, eat.oemid-random-\
-                                                                   cbor>
-   eat.oemid-random-cbor = bstr .size 16
-   eat.oemid-random-json = tstr .b64u eat.oemid-random-cbor
-   eat.hardware-version-type = [
-     version: tstr,
-     ? scheme: $version-scheme,
-   ]
-   eat.hardware-model-type-binary = bstr .size (1 .. 32)
-   eat.hardware-model-type-text = tstr .b64u eat.hardware-model-type-\
-                                                                  binary
-   eat.hardware-model-type = eat.JC<eat.hardware-model-type-text, eat.\
-                                             hardware-model-type-binary>
+   sw-version-type = eat.sw-version-type
    eat.sw-version-type = [
      version: tstr,
      ? scheme: $version-scheme,
    ]
-   eat.debug-status-type = eat.ds-enabled / eat.disabled / eat.disabled\
-   -since-boot / eat.disabled-permanently / eat.disabled-fully-and-\
-                                                             permanently
-   eat.ds-enabled = eat.JC<"enabled", 0>
-   eat.disabled = eat.JC<"disabled", 1>
-   eat.disabled-since-boot = eat.JC<"disabled-since-boot", 2>
-   eat.disabled-permanently = eat.JC<"disabled-permanently", 3>
-   eat.disabled-fully-and-permanently = eat.JC<"disabled-fully-and-\
-                                                        permanently", 4>
-   eat.location-type = {
-     eat.latitude => number,
-     eat.longitude => number,
-     ? eat.altitude => number,
-     ? eat.accuracy => number,
-     ? eat.altitude-accuracy => number,
-     ? eat.heading => number,
-     ? eat.speed => number,
-     ? eat.timestamp => ~eat.time-int,
-     ? eat.age => uint,
-   }
-   eat.latitude = eat.JC<"latitude", 1>
-   eat.longitude = eat.JC<"longitude", 2>
-   eat.altitude = eat.JC<"altitude", 3>
-   eat.accuracy = eat.JC<"accuracy", 4>
-   eat.altitude-accuracy = eat.JC<"altitude-accuracy", 5>
-   eat.heading = eat.JC<"heading", 6>
-   eat.speed = eat.JC<"speed", 7>
-   eat.timestamp = eat.JC<"timestamp", 8>
-   eat.age = eat.JC<"age", 9>
-   eat.intended-use-type = eat.JC<text, int>
-   eat.dloa-type = [
-     dloa_registrar: eat.general-uri,
-     dloa_platform_label: text,
-     ? dloa_application_label: text,
-   ]
-   eat.manifests-type = [+ eat.manifest-format]
-   eat.manifest-format = [
-     content-type: eat.coap-content-format,
-     content-format: eat.JC<eat.$manifest-body-json, eat.$manifest-body\
-                                                                 -cbor>,
-   ]
-   eat.$manifest-body-cbor /= bytes .cbor untagged-coswid
-   eat.$manifest-body-json /= eat.base64-url-text
-   eat.measurements-type = [+ eat.measurements-format]
-   eat.measurements-format = [
-     content-type: eat.coap-content-format,
-     content-format: eat.JC<eat.$measurements-body-json, eat.$\
-                                                measurements-body-cbor>,
-   ]
-   eat.$measurements-body-cbor /= bytes .cbor untagged-coswid
-   eat.$measurements-body-json /= eat.base64-url-text
-   eat.measurement-results-group = [
-     measurement-system: tstr,
-     measurement-results: [+ eat.individual-result],
-   ]
-   eat.individual-result = [
-     result-id: tstr / eat.binary-data,
-     result: eat.result-type,
-   ]
-   eat.result-type = eat.comparison-success / eat.comparison-fail / eat\
-                            .comparison-not-run / eat.measurement-absent
-   eat.comparison-success = eat.JC<"success", 1>
-   eat.comparison-fail = eat.JC<"fail", 2>
-   eat.comparison-not-run = eat.JC<"not-run", 3>
-   eat.measurement-absent = eat.JC<"absent", 4>
-   eat.Detached-Submodule-Digest = [
-     hash-algorithm: text / int,
-     digest: eat.binary-data,
-   ]
-   eat.BUNDLE-Messages = eat.BUNDLE-Tagged-Message / eat.BUNDLE-\
-                                                        Untagged-Message
-   eat.BUNDLE-Tagged-Message = #6.602(eat.BUNDLE-Untagged-Message)
-   eat.BUNDLE-Untagged-Message = eat.Detached-EAT-Bundle
-   eat.Detached-EAT-Bundle = [
-     main-token: Nested-Token,
-     detached-claims-sets: {+ tstr => eat.JC<eat.json-wrapped-claims-\
-                                     set, eat.cbor-wrapped-claims-set>},
-   ]
-   eat.json-wrapped-claims-set = eat.base64-url-text
-   eat.cbor-wrapped-claims-set = bstr .cbor eat.Claims-Set
-   eat.nonce-label = eat.JC<"eat_nonce", 10>
-   eat.ueid-label = eat.JC<"ueid", 256>
-   eat.sueids-label = eat.JC<"sueids", 257>
-   eat.oemid-label = eat.JC<"oemid", 258>
-   eat.hardware-model-label = eat.JC<"hwmodel", 259>
-   eat.hardware-version-label = eat.JC<"hwversion", 260>
-   eat.uptime-label = eat.JC<"uptime", 261>
-   eat.oem-boot-label = eat.JC<"oemboot", 262>
-   eat.debug-status-label = eat.JC<"dbgstat", 263>
-   eat.location-label = eat.JC<"location", 264>
-   eat.profile-label = eat.JC<"eat_profile", 265>
-   eat.submods-label = eat.JC<"submods", 266>
-   eat.boot-count-label = eat.JC<"bootcount", 267>
-   eat.boot-seed-label = eat.JC<"bootseed", 268>
-   eat.dloas-label = eat.JC<"dloas", 269>
-   eat.sw-name-label = eat.JC<"swname", 270>
-   eat.sw-version-label = eat.JC<"swversion", 271>
-   eat.manifests-label = eat.JC<"manifests", 272>
-   eat.measurements-label = eat.JC<"measurements", 273>
-   eat.measurement-results-label = eat.JC<"measres", 274>
-   eat.intended-use-label = eat.JC<"intuse", 275>
-   eat.Claims-Set = {
-     * eat.$$Claims-Set-Claims,
-     * eat.Claim-Label .feature "extended-claims-label" => any,
-   }
-   eat.Claim-Label = int / text
-   eat.string-or-uri = text
-   eat.iss-claim-label = eat.JC<"iss", 1>
-   eat.sub-claim-label = eat.JC<"sub", 2>
-   eat.aud-claim-label = eat.JC<"aud", 3>
-   eat.exp-claim-label = eat.JC<"exp", 4>
-   eat.nbf-claim-label = eat.JC<"nbf", 5>
-   eat.iat-claim-label = eat.JC<"iat", 6>
-   eat.cti-claim-label = eat.CBOR-ONLY<7>
+   eat.oemid-pen = int
+   eat.oemid-ieee = eat.JC<eat.oemid-ieee-json, eat.oemid-ieee-cbor>
+   eat.oemid-random = eat.JC<eat.oemid-random-json, eat.oemid-random-\
+                                                                   cbor>
+   eat.JC<J, C> = eat.JSON-ONLY<J> / eat.CBOR-ONLY<C>
    eat.JSON-ONLY<J> = J .feature "json"
    eat.CBOR-ONLY<C> = C .feature "cbor"
-   eat.JC<J, C> = eat.JSON-ONLY<J> / eat.CBOR-ONLY<C>
-   cose.label = int / tstr
-   cose.values = any
-   cbor-record = cmw.cbor-record
-   sw-version-type = eat.sw-version-type
+   eat.oemid-ieee-json = tstr .b64u eat.oemid-ieee-cbor
+   eat.oemid-ieee-cbor = bstr .size 3
+   eat.oemid-random-json = tstr .b64u eat.oemid-random-cbor
+   eat.oemid-random-cbor = bstr .size 16
    oemid-pen = eat.oemid-pen
    oemid-ieee = eat.oemid-ieee
    oemid-random = eat.oemid-random
