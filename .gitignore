@@ -22,3 +22,7 @@ Gemfile.lock
 package-lock.json
 report.xml
 !requirements.txt
+cddl/signed-cat-hdrs.cddl
+cddl/*-autogen.cddl
+cddl/examples/*.cbor
+cddl/examples/signed-cat-1.diag

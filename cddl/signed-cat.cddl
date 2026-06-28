@@ -1,0 +1,6 @@
+cat-token = #6.18([
+  protected: bytes .cbor phdrs
+  unprotected: uhdrs
+  payload: bytes .cbor cat-collection
+  signature: bytes
+])

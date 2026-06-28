@@ -14,6 +14,17 @@ else
 endif
 endif
 
+cddl_deps := cddl/cat-autogen.cddl
+cddl_deps += cddl/signed-cat-autogen.cddl
+
+$(drafts_xml): $(cddl_deps)
+
+$(cddl_deps): ; $(MAKE) -C cddl check
+
+cddl/%.cddl: cddl/%.cddl.in ; $(MAKE) -C cddl
+
+clean:: ; $(MAKE) -C cddl clean
+
 lint:: http-lint openapi-lint
 
 rfc-http-validate ?= rfc-http-validate
