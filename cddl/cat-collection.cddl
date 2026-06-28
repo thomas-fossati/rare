@@ -3,7 +3,7 @@
 cat-collection = {
   "__cmwc_t" => RATSD-CMWCT
   "__ratsd" => [
-    RATSD-CLAIMS-MEDIA-TYPE,
+    RATSD-CLAIMS-MEDIATYPE,
     bytes .cbor ratsd-claims
   ]
   + text => cmw.cbor-record
