@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-28T03:57:44.020769+00:00",
+  "timestamp": "2026-06-30T03:46:25.019938+00:00",
   "repo": "thomas-fossati/rare",
   "labels": [
     {
@@ -50,5 +50,53 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOTAw0Zs7rcuEd",
+      "title": "add cddl",
+      "url": "https://github.com/thomas-fossati/rare/pull/1",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Add the CDDL machinery template and the composite evidence token as an instance.",
+      "createdAt": "2026-06-28T07:36:39Z",
+      "updatedAt": "2026-06-29T22:22:44Z",
+      "baseRepository": "thomas-fossati/rare",
+      "baseRefName": "main",
+      "baseRefOid": "5048c32157f2ef2659bf6b839ce290777ef9d9b9",
+      "headRepository": "thomas-fossati/rare",
+      "headRefName": "cddl",
+      "headRefOid": "9e739116d6b7560d5d47fa79e9ba2a89b315dc38",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOTAw0Zs8AAAABEe4Qsw",
+          "commit": {
+            "abbreviatedOid": "9e73911"
+          },
+          "author": "paulhowardarm",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-06-29T22:21:36Z",
+          "updatedAt": "2026-06-29T22:22:44Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "I don't see any CDDL for the `configfs-tsm` part of the example.",
+              "createdAt": "2026-06-29T22:21:36Z",
+              "updatedAt": "2026-06-29T22:22:44Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
