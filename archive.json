@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-30T03:46:25.019938+00:00",
+  "timestamp": "2026-07-02T03:41:37.396081+00:00",
   "repo": "thomas-fossati/rare",
   "labels": [
     {
@@ -63,7 +63,7 @@
       "labels": [],
       "body": "Add the CDDL machinery template and the composite evidence token as an instance.",
       "createdAt": "2026-06-28T07:36:39Z",
-      "updatedAt": "2026-06-29T22:22:44Z",
+      "updatedAt": "2026-07-01T10:24:06Z",
       "baseRepository": "thomas-fossati/rare",
       "baseRefName": "main",
       "baseRefOid": "5048c32157f2ef2659bf6b839ce290777ef9d9b9",
@@ -93,6 +93,46 @@
               "body": "I don't see any CDDL for the `configfs-tsm` part of the example.",
               "createdAt": "2026-06-29T22:21:36Z",
               "updatedAt": "2026-06-29T22:22:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOTAw0Zs8AAAABEk3mng",
+          "commit": {
+            "abbreviatedOid": "9e73911"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-06-30T16:07:06Z",
+          "updatedAt": "2026-06-30T16:07:06Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "This media type is already registered with IANA, see [vnd.veraison.tsm-report+cbor](https://www.iana.org/assignments/media-types/application/vnd.veraison.tsm-report+cbor).\r\n\r\nThe IANA page points to [this CDDL file](https://github.com/veraison/ratsd/blob/main/docs/tsm-report.cddl) as the associated \"Published specification\u201d.\r\n",
+              "createdAt": "2026-06-30T16:07:06Z",
+              "updatedAt": "2026-06-30T16:07:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOTAw0Zs8AAAABEqhDSw",
+          "commit": {
+            "abbreviatedOid": "9e73911"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-07-01T10:24:06Z",
+          "updatedAt": "2026-07-01T10:24:06Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "then this is resolved",
+              "createdAt": "2026-07-01T10:24:06Z",
+              "updatedAt": "2026-07-01T10:24:06Z"
             }
           ]
         }
