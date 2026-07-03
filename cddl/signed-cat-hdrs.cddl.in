@@ -1,0 +1,10 @@
+;# import rfc9052 as cose
+
+phdrs = {
+  ? &(x5chain: 33) => bytes / [ 2*certs: bytes ]
+  * cose.label => cose.values
+}
+
+uhdrs = {
+  * cose.label => cose.values
+}

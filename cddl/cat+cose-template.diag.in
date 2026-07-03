@@ -1,0 +1,11 @@
+/ signed-cat / 18([
+  / protected / << {
+    / x5chain / 33: h'FF'
+    / cty / 2 : "application/cmw+cbor"
+  } >>,
+  / unprotected / {},
+  / payload / <<
+    PAYLOAD
+  >>,
+  / signature / h'face5190'
+])

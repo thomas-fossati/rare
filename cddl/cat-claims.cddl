@@ -1,0 +1,21 @@
+;# import sw-version-type from rfc9711 as eat
+;# import oemid-pen, oemid-ieee, oemid-random from rfc9711 as eat
+
+RATSD-CLAIMS-PROFILE = "tag:github.com,2026:veraison/ratsd/v2"
+
+ratsd-claims = #6.601({
+  &(eat_profile: 265) => RATSD-CLAIMS-PROFILE
+  &(eat_nonce: 10) => bytes .size (8..64)
+  &(oemid: 258) => eat.oemid-pen / eat.oemid-ieee / eat.oemid-random
+  &(sw-name: 270) => text
+  &(sw-version: 271) => eat.sw-version-type
+  ? (
+    &(nonce_adjust_function: -65537) => nonce_adjust_function_type
+    &(nonce_adjust_map: -65538) => {
+      + text => uint
+    }
+  )
+})
+
+nonce_adjust_function_type /= "shake-128"
+nonce_adjust_function_type /= "shake-256"

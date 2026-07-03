@@ -25,8 +25,8 @@ venue:
 author:
  -
     fullname: Thomas Fossati
-    organization: Linaro
-    email: thomas.fossati@linaro.org
+    organization: Independent
+    email: tho.ietf@gmail.org
  -
     fullname: Henk Birkholz
     organization: Fraunhofer SIT
@@ -116,6 +116,14 @@ TODO IANA
 
 
 --- back
+
+# Collated CDDL
+
+## Composite Attestation Token
+
+~~~ cddl
+{::include-fold cddl/signed-cat-autogen.cddl}
+~~~
 
 # OpenAPI Schema {#openapi-schema}
 
