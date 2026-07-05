@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-02T03:41:37.396081+00:00",
+  "timestamp": "2026-07-05T03:32:20.860933+00:00",
   "repo": "thomas-fossati/rare",
   "labels": [
     {
@@ -56,24 +56,26 @@
       "id": "PR_kwDOTAw0Zs7rcuEd",
       "title": "add cddl",
       "url": "https://github.com/thomas-fossati/rare/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thomas-fossati",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Add the CDDL machinery template and the composite evidence token as an instance.",
       "createdAt": "2026-06-28T07:36:39Z",
-      "updatedAt": "2026-07-01T10:24:06Z",
+      "updatedAt": "2026-07-03T09:46:25Z",
       "baseRepository": "thomas-fossati/rare",
       "baseRefName": "main",
       "baseRefOid": "5048c32157f2ef2659bf6b839ce290777ef9d9b9",
       "headRepository": "thomas-fossati/rare",
       "headRefName": "cddl",
       "headRefOid": "9e739116d6b7560d5d47fa79e9ba2a89b315dc38",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-07-03T09:46:20Z",
+      "mergedAt": "2026-07-03T09:46:20Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "136dd26cdba551831b2659905894e722ea1e2d06"
+      },
       "comments": [],
       "reviews": [
         {
