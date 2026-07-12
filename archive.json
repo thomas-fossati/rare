@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-09T03:34:18.297279+00:00",
+  "timestamp": "2026-07-12T02:52:04.333953+00:00",
   "repo": "thomas-fossati/rare",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 2,
+      "id": "I_kwDOTAw0Zs8AAAABIV1qNw",
+      "title": "Architecture",
+      "url": "https://github.com/thomas-fossati/rare/issues/2",
+      "state": "OPEN",
+      "author": "yaronf",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Please include a diagram that shows which components (RATS architectural components and/or lower-level software components) play a role in these APIs.",
+      "createdAt": "2026-07-10T11:52:17Z",
+      "updatedAt": "2026-07-10T11:52:17Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
